@@ -406,20 +406,22 @@ export default {
 
         close() {
             this.open = false
-            document.addEventListener("DOMContentLoaded", async function () {
+            document.addEventListener("DOMContentLoaded", async function (event) {
                 document.querySelector(this.blurEl).classList.remove('tour-blurred')
-            });
+            });  
+
             localStorage.setItem('vue-tour-viewed', true);
             this.$emit('close')
         },
 
         scale() {
             this.scaled = !this.scaled
-            document.addEventListener("DOMContentLoaded", async function () {
-                if (this.scaled)
-                    document.querySelector(this.blurEl).classList.add('tour-blurred')
-                else
-                    document.querySelector(this.blurEl).classList.remove('tour-blurred')
+            if (this.scaled)
+            document.addEventListener("DOMContentLoaded", async function (event) {
+                document.querySelector(this.blurEl).classList.add('tour-blurred')
+            else
+                document.querySelector(this.blurEl).classList.remove('tour-blurred')
+
             });
         },
 
